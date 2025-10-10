@@ -122,3 +122,51 @@ textarea {
 h1 {
   font-size: 400%;
 }
+
+.resume {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1.5em;
+  max-width: 100ch;
+  margin-inline: auto;
+  padding: 1em;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 0.3em;
+}
+
+h2 {
+  font-size: 1.5em;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.2em;
+  margin-top: 1.5em;
+}
+
+section {
+  margin-bottom: 1.5em;
+}
+
+article {
+  margin-bottom: 1em;
+}
+
+time {
+  color: gray;
+  font-size: 0.9em;
+}
+
+ul {
+  margin: 0.5em 0 1em 1.5em;
+}
+
+strong {
+  color: var(--color-accent);
+}
+
+@media (max-width: 700px) {
+  .resume {
+    grid-template-columns: 1fr;
+  }
+}
