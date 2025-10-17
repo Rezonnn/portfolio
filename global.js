@@ -73,3 +73,19 @@ if (localStorage.colorScheme) {
 } else {
   select.value = "light dark";
 }
+const form = document.querySelector("form[action^='mailto:']");
+
+form?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const data = new FormData(form);
+  const parts = [];
+
+  for (const [name, value] of data) {
+    if (!value) continue;
+    parts.push(`${encodeURIComponent(name)}=${encodeURIComponent(value)}`);
+  }
+
+  const url = `${form.action}?${parts.join("&")}`;
+  location.href = url;
+});
