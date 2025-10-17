@@ -42,3 +42,34 @@ for (const a of nav.querySelectorAll("a")) {
   );
   if (a.host !== location.host) a.target = "_blank";
 }
+document.body.insertAdjacentHTML(
+  "afterbegin",
+  `
+  <label class="color-scheme">
+    Theme:
+    <select>
+      <option value="light dark">Automatic</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </label>
+  `
+);
+const select = document.querySelector(".color-scheme select");
+
+function applyColorScheme(value) {
+  document.documentElement.style.setProperty("color-scheme", value);
+}
+
+select.addEventListener("input", (event) => {
+  const value = event.target.value;
+  applyColorScheme(value);
+  localStorage.colorScheme = value;
+});
+
+if (localStorage.colorScheme) {
+  applyColorScheme(localStorage.colorScheme);
+  select.value = localStorage.colorScheme;
+} else {
+  select.value = "light dark";
+}
