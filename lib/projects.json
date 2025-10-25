@@ -2,73 +2,73 @@
   {
     "title": "Portfolio Website",
     "year": "2025",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A personal website built using HTML, CSS, and JavaScript modules to showcase my work and experiments."
   },
   {
     "title": "Data Visualization Poster",
     "year": "2024",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A poster exploring chart design principles and typography through data-driven visuals."
   },
   {
     "title": "Recipe Finder",
     "year": "2023",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A web app that suggests recipes based on available ingredients using a simple ingredient-matching algorithm."
   },
   {
     "title": "Study Planner",
     "year": "2022",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A study schedule planner that helps students manage their time effectively with reminders and task tracking."
   },
   {
     "title": "Map Explorer",
     "year": "2025",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "An interactive map built with GeoJSON and Leaflet.js to visualize global data patterns."
   },
   {
     "title": "API Dashboard",
     "year": "2024",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A dashboard that fetches and visualizes public API data with dynamic updates and minimal design."
   },
   {
     "title": "Markdown Notes",
     "year": "2023",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A note-taking app with Markdown support and local storage to save notes between sessions."
   },
   {
     "title": "Color Palette Tool",
     "year": "2025",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A simple color tool that helps designers mix and preview harmonious color palettes."
   },
   {
     "title": "UX Redesign Teardown",
     "year": "2021",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A usability analysis and redesign proposal for a popular website, focusing on accessibility and user flow."
   },
   {
     "title": "CSV Cleaner",
     "year": "2022",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A lightweight Python-based web tool that cleans and normalizes messy CSV data for analysis."
   },
   {
     "title": "Chart Library Demo",
     "year": "2023",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A comparison of multiple JavaScript charting libraries through the same dataset and visualization types."
   },
   {
     "title": "A/B Testing Report",
     "year": "2024",
-    "image": "images/empty.svg",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "A simulated A/B test case study summarizing findings and visualizations with charts and data tables."
   }
 ]
