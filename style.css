@@ -184,14 +184,6 @@ strong {
     grid-template-columns: 1fr;
   }
 }
-/* ===== Lab 4 look: append below existing styles ===== */
-:root {
-  --text: #111827;   /* gray-900 */
-  --muted: #6b7280;  /* gray-500 */
-  --card: #ffffff;
-  --border: #e5e7eb; /* gray-200 */
-}
-
 /* Tidy headings and images (non-destructive) */
 h1, h2 { margin: 1.25rem 0 .75rem; }
 img { max-width: 100%; height: auto; display: block; }
