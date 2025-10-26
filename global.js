@@ -112,15 +112,7 @@ export async function fetchGitHubData(username) {
 export function renderProjects(project, containerElement, headingLevel = 'h2') {
   containerElement.innerHTML = '';
 
-  const inProjectsDir =
-    /\/projects(\/|\/index\.html?)?$/.test(location.pathname);
-
   for (const p of project) {
-
-    const imgSrc = /^https?:\/\//.test(p.image)
-      ? p.image
-      : (inProjectsDir ? `../${p.image}` : p.image);
-    
     const article = document.createElement('article');
     article.innerHTML = `
         <${headingLevel}>${p.title}</${headingLevel}>
