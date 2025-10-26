@@ -110,14 +110,16 @@ export async function fetchGitHubData(username) {
 }
 
 export function renderProjects(project, containerElement, headingLevel = 'h2') {
-  const base = document.body.dataset.base ?? '';
   containerElement.innerHTML = '';
 
+  const inProjectsDir =
+    /\/projects(\/|\/index\.html?)?$/.test(location.pathname);
+
   for (const p of project) {
-    
+
     const imgSrc = /^https?:\/\//.test(p.image)
       ? p.image
-      : (base + p.image).replace(/\/{2,}/g, '/');
+      : (inProjectsDir ? `../${p.image}` : p.image);
     
     const article = document.createElement('article');
     article.innerHTML = `
