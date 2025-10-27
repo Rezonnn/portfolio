@@ -9,7 +9,8 @@ const pages = [
   { url: "projects/", title: "Projects" },
   { url: "resume/", title: "CV" },
   { url: "contact/", title: "Contact" },
-  { url: "https://github.com/Rezonnn", title: "GitHub" }
+  { url: "https://github.com/Rezonnn", title: "GitHub" },
+  { url: "https://www.linkedin.com/in/rezonhg", title: "LinkedIn" }
 ];
 
 const nav = document.createElement("nav");
