@@ -422,24 +422,46 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
+/* ===== Skills Section ===== */
 #skills {
-  text-align: center;
+  text-align: left;              /* Left-align header and text */
   margin: 3rem auto 2rem;
+  max-width: 900px;              /* Keeps layout centered overall */
 }
+
+#skills h2 {
+  margin-bottom: 1rem;
+}
+
 .skills-grid {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
+  justify-content: center;       /* Centers the grid overall */
+  gap: 1.5rem;
 }
-.skills-grid img {
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+}
+
+.skill-item img {
   width: 50px;
   height: 50px;
-  transition: transform 0.2s ease, filter 0.2s ease;
   filter: grayscale(100%);
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
-.skills-grid img:hover {
+
+.skill-item img:hover {
   transform: scale(1.15);
   filter: grayscale(0%);
+}
+
+.skill-item p {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  text-align: center;
 }
