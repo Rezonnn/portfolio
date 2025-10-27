@@ -128,6 +128,14 @@ textarea {
   display: block;
 }
 
+/* Force all project images to have the same size and crop cleanly */
+.projects img {
+  width: 100%;
+  height: 200px;       /* same height for all project images */
+  object-fit: cover;   /* crops neatly, keeps proportions */
+  display: block;
+}
+
 :where(h1, h2, h3, h4, h5, h6) {
   line-height: 1.1;
   text-wrap: balance;
@@ -195,19 +203,20 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 1rem;
   margin-bottom: 2rem;
 }
+
 .projects article {
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);       /* slightly thicker border */
   border-radius: 12px;
   padding: .75rem;
-  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  box-shadow: 0 2px 6px rgba(0,0,0,.12); /* more visible shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.projects article h2,
-.projects article h3 {
-  font-size: 1.125rem;
-  margin: 0 0 .5rem;
+
+.projects article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
 }
-.projects article p { margin: .5rem 0 0; }
 
 .projects .project-link {
   display: block;
@@ -219,6 +228,13 @@ img { max-width: 100%; height: auto; display: block; }
   transform: scale(1.02);
   transition: transform 0.2s ease;
 }
+
+.projects article h2,
+.projects article h3 {
+  font-size: 1.125rem;
+  margin: 0 0 .5rem;
+}
+.projects article p { margin: .5rem 0 0; }
 
 /* Responsive columns */
 @media (max-width: 900px) { .projects { grid-template-columns: repeat(2, 1fr); } }
