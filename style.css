@@ -293,3 +293,43 @@ img { max-width: 100%; height: auto; display: block; }
 #linkedin-stats dd {
   color: var(--text);
 }
+
+/* --- Three round hero photos: center bigger, sides smaller --- */
+.hero-photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 1.25rem 0 2rem;
+  flex-wrap: wrap; /* allows stacking on small screens */
+}
+
+.hero-photos .hero {
+  width: 140px;           /* side default */
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;      /* crop to a clean circle even if not square */
+  background: var(--card, canvas);
+  border: 2px solid var(--border, color-mix(in oklch, canvastext 25%, canvas 75%));
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+
+.hero-photos .hero.center {
+  width: 220px;           /* center larger */
+  height: 220px;
+}
+
+.hero-photos .hero.side {
+  opacity: .98;
+}
+
+/* Responsive sizes */
+@media (max-width: 800px) {
+  .hero-photos .hero { width: 120px; height: 120px; }
+  .hero-photos .hero.center { width: 180px; height: 180px; }
+}
+@media (max-width: 520px) {
+  .hero-photos { gap: 0.9rem; }
+  .hero-photos .hero { width: 100px; height: 100px; }
+  .hero-photos .hero.center { width: 150px; height: 150px; }
+}
