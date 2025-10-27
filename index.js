@@ -44,20 +44,22 @@ if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     status.textContent = 'Sending…';
+
     try {
-      const res = await fetch(form.action, {
+      const response = await fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       });
-      if (res.ok) {
-        status.textContent = 'Thanks! I’ll get back to you soon.';
+
+      if (response.ok) {
+        status.textContent = '✅ Thanks! Your message has been sent successfully.';
         form.reset();
       } else {
-        status.textContent = 'Oops—something went wrong. Please try again.';
+        status.textContent = '⚠️ Something went wrong. Please try again later.';
       }
     } catch {
-      status.textContent = 'Network error. Try again later.';
+      status.textContent = '🚫 Network error. Please check your connection.';
     }
   });
 }

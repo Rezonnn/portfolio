@@ -26,19 +26,19 @@
 <form id="contact-form" action="https://formspree.io/f/mkgpobll" method="POST">
   
   <label>Your Email:
-    <input type="email" name="_replyto" required>
+    <input type="email" name="Reply To" placeholder="your@email.com" required>
   </label>
   
   <label>Subject:
-    <input type="text" name="subject" placeholder="Hi there!" required>
+    <input type="text" name="Subject" placeholder="Hi there!" required>
   </label>
 
   <label>Message:
-    <textarea name="message" rows="6" placeholder="Sup? Just wanted to see how you’re doing!" required></textarea>
+    <textarea name="Message" rows="6" placeholder="Sup? Just wanted to see how you’re doing!" required></textarea>
   </label>
 
-  <input type="hidden" name="_subject" value="Portfolio contact">
-  <input type="text" name="_gotcha" style="display:none">
+  <input type="hidden" name="Form Title" value="Portfolio contact">
+  <input type="text" name="Gotcha" style="display:none">
   <button type="submit">Send</button>
   <p id="form-status" role="status" aria-live="polite"></p>
 </form>
