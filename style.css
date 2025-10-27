@@ -333,3 +333,36 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-photos .hero { width: 100px; height: 100px; }
   .hero-photos .hero.center { width: 150px; height: 150px; }
 }
+
+/* === Row with side rectangles + existing circle photos (do not alter .hero-photos) === */
+.hero-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 1.25rem 0 2rem;
+  flex-wrap: wrap; /* wrap nicely on small screens */
+}
+
+/* Same size for both rectangle images; show entire image content */
+.hero-row .bar-img {
+  width: 220px;        /* rectangle width */
+  height: 140px;       /* rectangle height */
+  object-fit: contain; /* show all content, no cropping */
+  background: var(--card, canvas);
+  border: 2px solid var(--border, color-mix(in oklch, canvastext 25%, canvas 75%));
+  border-radius: 12px; /* keep them rectangular with slightly rounded corners */
+  padding: .5rem;      /* breathing room so 'contain' doesn’t touch the edge */
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+}
+
+/* Keep your existing .hero-photos block unchanged */
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .hero-row .bar-img { width: 200px; height: 120px; }
+}
+@media (max-width: 600px) {
+  .hero-row { gap: .9rem; }
+  .hero-row .bar-img { width: 160px; height: 100px; }
+}
