@@ -209,6 +209,17 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .projects article p { margin: .5rem 0 0; }
 
+.projects .project-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.projects .project-link:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
 /* Responsive columns */
 @media (max-width: 900px) { .projects { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .projects { grid-template-columns: 1fr; } }

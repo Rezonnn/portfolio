@@ -110,17 +110,18 @@ export async function fetchGitHubData(username) {
   return fetchJSON(`https://api.github.com/users/${username}`);
 }
 
-export function renderProjects(project, containerElement, headingLevel = 'h2') {
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
   containerElement.innerHTML = '';
 
-  for (const p of project) {
+  for (const p of projects) {
     const article = document.createElement('article');
     article.innerHTML = `
-        <${headingLevel}>${p.title}</${headingLevel}>
+      <a href="${p.link}" target="_blank" rel="noopener noreferrer" class="project-link">
         <img src="${p.image}" alt="${p.title}">
+        <${headingLevel}>${p.title}</${headingLevel}>
         <p>${p.description}</p>
+      </a>
     `;
-
     containerElement.appendChild(article);
   }
 }
