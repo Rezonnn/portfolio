@@ -36,3 +36,28 @@ if (linkedinStats) {
     </dl>
   `;
 }
+
+const form = document.querySelector('#contact-form');
+const status = document.querySelector('#form-status');
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        status.textContent = 'Thanks! I’ll get back to you soon.';
+        form.reset();
+      } else {
+        status.textContent = 'Oops—something went wrong. Please try again.';
+      }
+    } catch {
+      status.textContent = 'Network error. Try again later.';
+    }
+  });
+}
