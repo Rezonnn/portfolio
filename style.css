@@ -430,7 +430,6 @@ img { max-width: 100%; height: auto; display: block; }
 #skills h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
   border-bottom: 2px solid var(--border);
   padding-bottom: 0.5rem;
