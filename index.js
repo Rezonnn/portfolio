@@ -32,23 +32,3 @@ if (linkedinStats) {
     </dl>
   `;
 }
-
-// === Add LinkedIn button dynamically (matches GitHub icon behavior) ===
-const linkedinButton = document.createElement('a');
-linkedinButton.href = 'https://www.linkedin.com/in/rezonhg';
-linkedinButton.target = '_blank';
-linkedinButton.rel = 'noopener noreferrer';
-
-const linkedinIcon = document.createElement('img');
-linkedinIcon.src = 'https://rezonnn.github.io/portfolio/images/linkedin.jpg';
-linkedinIcon.alt = 'LinkedIn';
-linkedinIcon.width = 24;
-linkedinIcon.height = 24;
-
-linkedinButton.appendChild(linkedinIcon);
-
-// Add to the same .color-scheme container as GitHub + theme toggle
-const colorScheme = document.querySelector('.color-scheme');
-if (colorScheme) {
-  colorScheme.appendChild(linkedinButton);
-}
