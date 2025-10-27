@@ -288,3 +288,8 @@ img { max-width: 100%; height: auto; display: block; }
   #linkedin-stats dl { grid-template-columns: 1fr; }
   #linkedin-stats dt, #linkedin-stats dd { justify-self: start; }
 }
+
+#linkedin-stats dt,
+#linkedin-stats dd {
+  color: var(--text);
+}
