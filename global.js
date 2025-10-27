@@ -123,3 +123,11 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
     containerElement.appendChild(article);
   }
 }
+
+export function fetchLinkedInData(profileURL) {
+  return {
+    url: profileURL,
+    displayName: "LinkedIn",
+    message: "Visit my LinkedIn profile",
+  };
+}

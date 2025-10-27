@@ -288,3 +288,31 @@ img { max-width: 100%; height: auto; display: block; }
   #linkedin-stats dl { grid-template-columns: 1fr; }
   #linkedin-stats dt, #linkedin-stats dd { justify-self: start; }
 }
+
+.linkedin-link {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.linkedin-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.linkedin-link a:hover {
+  color: #0A66C2; /* LinkedIn blue */
+}
+
+.linkedin-link img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.2s ease;
+}
+
+.linkedin-link img:hover {
+  transform: scale(1.1);
+}

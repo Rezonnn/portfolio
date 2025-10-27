@@ -32,3 +32,18 @@ if (linkedinStats) {
     </dl>
   `;
 }
+
+import { fetchLinkedInData } from './global.js';
+
+const linkedIn = fetchLinkedInData("https://www.linkedin.com/in/rezonhg");
+
+const linkedInContainer = document.createElement('div');
+linkedInContainer.className = 'linkedin-link';
+linkedInContainer.innerHTML = `
+  <a href="${linkedIn.url}" target="_blank" rel="noopener noreferrer">
+    <img src="images/linkedin-icon.svg" alt="${linkedIn.displayName}" />
+    <span>${linkedIn.message}</span>
+  </a>
+`;
+
+document.body.appendChild(linkedInContainer);
