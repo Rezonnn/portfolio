@@ -16,3 +16,19 @@ if (profileStats) {
         </dl>
     `;
 }
+
+// --- LinkedIn stats (manual numbers since there is no public API) ---
+const linkedinData = {
+  connections: '500+',   // LinkedIn caps public display at "500+"
+  followers: 1200        // put your latest follower count if visible
+};
+
+const linkedinStats = document.querySelector('#linkedin-stats');
+if (linkedinStats) {
+  linkedinStats.innerHTML = `
+    <dl>
+      <dt>Connections</dt><dd>${linkedinData.connections}</dd>
+      <dt>Followers</dt><dd>${linkedinData.followers}</dd>
+    </dl>
+  `;
+}
