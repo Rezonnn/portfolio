@@ -192,6 +192,20 @@ strong {
     grid-template-columns: 1fr;
   }
 }
+
+/* Make borders more visible and match rectangle image tone */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --border: #9ca3af; /* brighter gray for dark mode */
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --border: #d1d5db; /* medium gray for light mode */
+  }
+}
+
 /* Tidy headings and images (non-destructive) */
 h1, h2 { margin: 1.25rem 0 .75rem; }
 img { max-width: 100%; height: auto; display: block; }
@@ -206,11 +220,12 @@ img { max-width: 100%; height: auto; display: block; }
 
 .projects article {
   background: var(--card);
-  border: 2px solid var(--border);       /* slightly thicker border */
+  border: 2px solid var(--border);
   border-radius: 12px;
   padding: .75rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,.12); /* more visible shadow */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  display: flex;
+  flex-direction: column;
 }
 
 .projects article:hover {
@@ -234,6 +249,20 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 1.125rem;
   margin: 0 0 .5rem;
 }
+
+.projects article img {
+  order: 2;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.projects article h2 {
+  order: 1;
+  font-weight: 700;
+}
+
 .projects article p { margin: .5rem 0 0; }
 
 /* Responsive columns */
