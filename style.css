@@ -421,3 +421,25 @@ img { max-width: 100%; height: auto; display: block; }
     height: 100px;
   }
 }
+
+#skills {
+  text-align: center;
+  margin: 3rem auto 2rem;
+}
+.skills-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.skills-grid img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  filter: grayscale(100%);
+}
+.skills-grid img:hover {
+  transform: scale(1.15);
+  filter: grayscale(0%);
+}
