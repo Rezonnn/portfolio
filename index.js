@@ -32,3 +32,18 @@ if (linkedinStats) {
     </dl>
   `;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const github = document.querySelector('nav a[href*="github.com"]');
+  if (!github) return;
+
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  a.textContent = 'LinkedIn';
+  a.href = 'https://www.linkedin.com/in/rezonhg';
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  li.appendChild(a);
+
+  github.parentElement.insertAdjacentElement('afterend', li);
+});
