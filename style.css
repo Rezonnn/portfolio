@@ -490,3 +490,12 @@ img { max-width: 100%; height: auto; display: block; }
   transform: scale(1.05);
   opacity: 0.9;
 }
+
+.project-meta { margin: .5rem 0 0; }
+.project-meta p { margin: .25rem 0; }
+
+.project-year {
+  color: var(--muted);
+  font-family: Baskerville, "Libre Baskerville", Georgia, serif;
+  font-variant-numeric: oldstyle-nums;
+}
