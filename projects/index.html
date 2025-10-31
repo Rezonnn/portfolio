@@ -23,9 +23,21 @@
     <h1>My Projects</h1>
   </div>
 
-  <svg id="projects-pie-plot" viewBox="-50 -50 100 100">
-    <path d="M -50 0 A 50 50 0 0 1 50 0 A 50 50 0 0 1 -50 0" fill="red" />
-  </svg>
+  <div class="pie-with-legend">
+    <!-- Pie mount (Step 1) -->
+    <svg id="projects-pie-plot" viewBox="-50 -50 100 100"></svg>
+
+    <!-- Legend list (Step 2.2) -->
+    <ul class="legend"></ul>
+  </div>
+
+  <!-- Search input (Step 4.1) -->
+  <input
+    class="searchBar"
+    type="search"
+    aria-label="Search projects"
+    placeholder=" Search projects…"
+  />
 
   <div class="projects">
     <!--

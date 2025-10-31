@@ -505,3 +505,65 @@ img { max-width: 100%; height: auto; display: block; }
   margin-block: 2em;
   overflow: visible;
 }
+
+/* --- Legend (Step 2.2) --- */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 0.5rem 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.legend .swatch {
+  width: 1rem;
+  aspect-ratio: 1 / 1;
+  background: var(--color);
+  border-radius: 0.25rem;
+  border: 1px solid var(--border);
+}
+.legend .label { color: var(--text); }
+
+/* --- Place pie and legend side by side (Step 2.3) --- */
+.pie-with-legend {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* keep your existing #projects-pie-plot sizing from earlier file; this augments behavior */
+
+/* --- Hover highlight (Step 5.1) --- */
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+#projects-pie-plot path { transition: 300ms; }
+
+/* --- Selected state (Step 5.2) --- */
+#projects-pie-plot path[aria-selected="true"] {
+  outline: 3px solid var(--border);
+  filter: brightness(1.2) saturate(1.05);
+}
+.legend li[aria-selected="true"] {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* --- Search input minor tidy (Step 4.1) --- */
+.searchBar {
+  display: block;
+  width: 100%;
+  max-width: 28rem;
+  margin: 1rem 0 1.5rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card, canvas);
+  color: var(--text, canvastext);
+}
