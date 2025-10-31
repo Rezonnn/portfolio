@@ -499,3 +499,9 @@ img { max-width: 100%; height: auto; display: block; }
   font-family: Baskerville, "Libre Baskerville", Georgia, serif;
   font-variant-numeric: oldstyle-nums;
 }
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
