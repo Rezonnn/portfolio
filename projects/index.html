@@ -25,10 +25,10 @@
 
   <div class="pie-with-legend">
     <!-- Pie mount (Step 1) -->
-    <svg id="projects-pie-plot" viewBox="-50 -50 100 100"></svg>
+    <svg id="projects-pie-plot" viewBox="-50 -50 100 100" aria-label="Projects by year"></svg>
 
     <!-- Legend list (Step 2.2) -->
-    <ul class="legend"></ul>
+    <ul class="legend" aria-label="Year breakdown"></ul>
   </div>
 
   <!-- Search input (Step 4.1) -->
@@ -38,6 +38,8 @@
     aria-label="Search projects"
     placeholder=" Search projects…"
   />
+
+  <button id="clear-year" hidden>Clear year filter</button>
 
   <div class="projects">
     <!--

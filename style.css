@@ -567,3 +567,82 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--card, canvas);
   color: var(--text, canvastext);
 }
+
+/* === Lab 5: Pie + Legend layout to match video === */
+.pie-with-legend {
+  display: grid;
+  grid-template-columns: 320px 1fr; /* pie left, legend right */
+  gap: 1.25rem 2rem;
+  align-items: start;
+  margin-block: 0.5rem 1.25rem;
+}
+#projects-pie-plot {
+  width: 320px;
+  height: 320px;
+  display: block;
+}
+
+/* Legend look */
+.legend {
+  list-style: none;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.5rem 1rem;
+}
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.legend .swatch {
+  width: 0.9rem;
+  aspect-ratio: 1 / 1;
+  background: var(--color);
+  border-radius: 0.25rem;
+  border: 1px solid var(--border);
+}
+
+/* Hover dim (Step 5.1) + smooth transitions */
+#projects-pie-plot:has(path:hover) path:not(:hover) { opacity: 0.55; }
+#projects-pie-plot path { transition: 300ms; }
+
+/* Selected wedge + legend (Step 5.2) */
+#projects-pie-plot path[aria-selected="true"] {
+  outline: 3px solid var(--border);
+  filter: brightness(1.15) saturate(1.05);
+}
+.legend li[aria-selected="true"] {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Search input (Step 4.1) */
+.searchBar {
+  display: block;
+  width: 100%;
+  max-width: 42rem;         /* wider like the video */
+  margin: 1rem 0 1.25rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card, canvas);
+  color: var(--text, canvastext);
+}
+
+/* Clear Year button (extra credit UX) */
+#clear-year {
+  margin: .25rem 0 1rem;
+  padding: .55rem .8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card, canvas);
+  color: var(--text, canvastext);
+  cursor: pointer;
+}
+#clear-year:hover {
+  background: color-mix(in oklch, var(--color-accent, #e91e63), canvas 85%);
+}
