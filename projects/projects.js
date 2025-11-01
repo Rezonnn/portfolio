@@ -1,7 +1,7 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 import { fetchJSON, renderProjects } from '../global.js';
 
-// Load data + element refs
+// ---- Load data + element refs ----
 const projects = await fetchJSON('../lib/projects.json');
 const projectsContainer = document.querySelector('.projects');
 const svg = d3.select('#projects-pie-plot');
@@ -9,15 +9,37 @@ const legend = d3.select('.legend');
 const searchInput = document.querySelector('.searchBar');
 const clearBtn = document.getElementById('clear-year');
 
-// Visual constants (Step 1)
+// ---- Visual constants (Lab 5) ----
 const colors = d3.scaleOrdinal(d3.schemeTableau10);
 const arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-// UI state (Steps 4 & 5)
+// ---- UI state (Lab 5 + 5.4) ----
+// Track selection by YEAR VALUE (robust when search changes the data).
 let query = '';
-let selectedIndex = -1; // -1 = no selection
+let selectedYear = null; // e.g., '2024' or null
 
-// Smooth arc transitions
+// ---- Helpers ----
+function searchFilter(list) {
+  if (!query) return list;
+  const q = query.toLowerCase();
+  return list.filter(p => Object.values(p).join('\n').toLowerCase().includes(q));
+}
+
+function visibleProjects(all) {
+  // Step 5.4: search first, then (optional) year filter
+  const afterSearch = searchFilter(all);
+  if (!selectedYear) return afterSearch;
+  return afterSearch.filter(p => String(p.year) === String(selectedYear));
+}
+
+function rollupYearCounts(list) {
+  // [{label:'2025', value:3}, {label:'2024', value:5}, ...] newest → oldest
+  const rolled = d3.rollups(list, v => v.length, d => String(d.year));
+  rolled.sort((a, b) => b[0].localeCompare(a[0]));
+  return rolled.map(([label, value]) => ({ label, value }));
+}
+
+// Smooth arc transitions (nice polish; optional)
 const tDur = 350;
 function arcTween(newD, arcGen) {
   const i = d3.interpolate(this._current || newD, newD);
@@ -25,24 +47,13 @@ function arcTween(newD, arcGen) {
   return t => arcGen(i(t));
 }
 
-// Search filter (Step 4)
-function afterSearchFilter(arr) {
-  if (!query) return arr;
-  const q = query.toLowerCase();
-  return arr.filter(p => Object.values(p).join('\n').toLowerCase().includes(q));
-}
-
-// Render pie & legend (Steps 2–3, 5)
-function renderPieAndLegend(projectsGiven) {
-  // roll up by year, sort newest → oldest (matches the video)
-  const rolled = d3.rollups(projectsGiven, v => v.length, d => String(d.year));
-  rolled.sort((a, b) => b[0].localeCompare(a[0]));
-  const data = rolled.map(([label, value]) => ({ label, value }));
-
-  const pie = d3.pie().value(d => d.value);
+// ---- Pie + Legend (Steps 2–3, 5.2) ----
+function renderPieAndLegend(list) {
+  const data = rollupYearCounts(list);
+  const pie  = d3.pie().value(d => d.value);
   const arcs = pie(data);
 
-  // ----- PIE (stable keyed join for nice transitions) -----
+  // ----- PIE (key by label for stable joins) -----
   const paths = svg.selectAll('path').data(arcs, d => d.data.label);
 
   paths.exit()
@@ -51,7 +62,7 @@ function renderPieAndLegend(projectsGiven) {
     .remove();
 
   paths
-    .attr('aria-selected', (d, i) => String(i === selectedIndex))
+    .attr('aria-selected', d => String(d.data.label === selectedYear))
     .transition().duration(tDur)
     .attrTween('d', function(d){ return arcTween.call(this, d, arcGenerator); });
 
@@ -60,25 +71,25 @@ function renderPieAndLegend(projectsGiven) {
     .attr('fill', (_, i) => colors(i))
     .attr('tabindex', 0)
     .attr('aria-label', d => `Year ${d.data.label}, ${d.data.value} project(s)`)
-    .attr('aria-selected', (_, i) => String(i === selectedIndex))
+    .attr('aria-selected', d => String(d.data.label === selectedYear))
     .each(function(d){ this._current = d; })
     .on('click', (_, d) => {
-      const i = arcs.indexOf(d);
-      selectedIndex = (selectedIndex === i) ? -1 : i;
-      applyFiltersAndRender(projects);
+      const y = d.data.label;
+      selectedYear = (selectedYear === y) ? null : y; // Step 5.2: toggle
+      renderAll();                                    // Step 5.4: combines with search
     })
     .on('keydown', (evt, d) => {
       if (evt.key === 'Enter' || evt.key === ' ') {
         evt.preventDefault();
-        const i = arcs.indexOf(d);
-        selectedIndex = (selectedIndex === i) ? -1 : i;
-        applyFiltersAndRender(projects);
+        const y = d.data.label;
+        selectedYear = (selectedYear === y) ? null : y;
+        renderAll();
       }
     })
     .transition().duration(tDur)
     .attrTween('d', function(d){ return arcTween.call(this, d, arcGenerator); });
 
-  // ----- LEGEND -----
+  // ----- LEGEND (clickable, mirrors selection) -----
   const items = legend.selectAll('li').data(arcs, d => d.data.label);
 
   items.exit().remove();
@@ -89,68 +100,53 @@ function renderPieAndLegend(projectsGiven) {
     .attr('tabindex', 0)
     .html(d => `<span class="swatch"></span> ${d.data.label} <em>(${d.data.value})</em>`)
     .on('click', (_, d) => {
-      const i = arcs.indexOf(d);
-      selectedIndex = (selectedIndex === i) ? -1 : i;
-      applyFiltersAndRender(projects);
+      const y = d.data.label;
+      selectedYear = (selectedYear === y) ? null : y; // Step 5.2
+      renderAll();
     })
     .on('keydown', (evt, d) => {
       if (evt.key === 'Enter' || evt.key === ' ') {
         evt.preventDefault();
-        const i = arcs.indexOf(d);
-        selectedIndex = (selectedIndex === i) ? -1 : i;
-        applyFiltersAndRender(projects);
+        const y = d.data.label;
+        selectedYear = (selectedYear === y) ? null : y;
+        renderAll();
       }
     });
 
   enter.merge(items)
-    .attr('aria-selected', (_, i) => String(i === selectedIndex));
+    .attr('aria-selected', d => String(d.data.label === selectedYear));
 
-  // Show/hide the Clear button (extra credit UX)
-  if (clearBtn) clearBtn.hidden = (selectedIndex === -1);
+  // Optional UX: show a clear button only when a year is selected
+  if (clearBtn) clearBtn.hidden = !selectedYear;
 }
 
-// Coordinator: search first, then (optional) year (Step 5.4)
-function applyFiltersAndRender(allProjects) {
-  // 1) search
-  const afterSearch = afterSearchFilter(allProjects);
-
-  // 2) then year (if selected)
-  let toShow = afterSearch;
-  if (selectedIndex !== -1) {
-    const rolled = d3.rollups(afterSearch, v => v.length, d => String(d.year));
-    const slice = d3.pie().value(d => d.value)(
-      rolled.map(([label, value]) => ({ label, value }))
-    );
-
-    if (!slice[selectedIndex]) {
-      selectedIndex = -1; // selection invalid under current search
-    } else {
-      const selectedYear = slice[selectedIndex].data.label;
-      toShow = afterSearch.filter(p => String(p.year) === selectedYear);
-    }
-  }
-
-  // 3) render cards + pie/legend from the same filtered set
-  renderProjects(toShow, projectsContainer, 'h2');
-  renderPieAndLegend(toShow);
+// ---- Cards (reuse your lab render) ----
+function renderCards(list) {
+  renderProjects(list, projectsContainer, 'h2');
 }
 
-// Live search (Step 4.2/4.3)
+// ---- One coordinator that ALWAYS: search → (optional) year → render both ----
+function renderAll() {
+  const vis = visibleProjects(projects);
+  renderCards(vis);
+  renderPieAndLegend(vis);
+}
+
+// ---- Wire search (live) ----
 if (searchInput) {
   searchInput.addEventListener('input', e => {
     query = e.target.value;
-    applyFiltersAndRender(projects);
+    renderAll(); // Step 5.4: keeps search + year combined in both directions
   });
 }
 
-// Clear year selection (extra credit UX)
+// ---- Clear year selection (optional UX) ----
 if (clearBtn) {
   clearBtn.addEventListener('click', () => {
-    selectedIndex = -1;
-    applyFiltersAndRender(projects);
+    selectedYear = null;
+    renderAll();
   });
 }
 
-// Initial paint (Step 0 + Step 3)
-renderProjects(projects, projectsContainer, 'h2');
-renderPieAndLegend(projects);
+// ---- Initial paint ----
+renderAll();
