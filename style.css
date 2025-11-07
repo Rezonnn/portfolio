@@ -683,3 +683,20 @@ img { max-width: 100%; height: auto; display: block; }
   #stats .stats { grid-template-columns: 1fr; }
   #stats .stats dt, #stats .stats dd { justify-self: start; text-align: left; }
 }
+
+/* === Lab 6 · Step 2: Scatterplot + gridlines === */
+#chart svg { max-width: 100%; height: auto; display: block; }
+
+.gridlines line {
+  stroke: var(--border, #e5e7eb);
+  stroke-opacity: 0.6;
+  shape-rendering: crispEdges;
+}
+
+.gridlines path { display: none; } /* hide the axis domain line */
+.x-axis path, .x-axis line,
+.y-axis path, .y-axis line {
+  stroke: var(--border, #e5e7eb);
+  stroke-opacity: 0.9;
+  shape-rendering: crispEdges;
+}
