@@ -1,6 +1,6 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
-// ---- Step 1.1: load CSV and convert types ----
+// -------- Step 1.1: load CSV + type conversion --------
 async function loadData() {
   const data = await d3.csv('loc.csv', row => ({
     ...row,
@@ -13,7 +13,7 @@ async function loadData() {
   return data;
 }
 
-// ---- Step 1.2: build commits array ----
+// -------- Step 1.2: commits array from lines --------
 function processCommits(data) {
   return d3
     .groups(data, d => d.commit)
@@ -41,7 +41,7 @@ function processCommits(data) {
     });
 }
 
-// ---- Step 1.3: simple stats block ----
+// -------- Step 1.3: summary stats --------
 function renderCommitInfo(data, commits) {
   const container = d3.select('#stats');
   const dl = container.append('dl').attr('class', 'stats');
@@ -81,7 +81,38 @@ function renderCommitInfo(data, commits) {
   dl.append('dd').text(d3.format('.2f')(avgDepth));
 }
 
-// ---- Step 2: scatterplot (time of day vs date) ----
+// -------- Step 3: tooltip helpers --------
+function renderTooltipContent(commit) {
+  if (!commit || Object.keys(commit).length === 0) return;
+  const link = document.getElementById('commit-link');
+  const date = document.getElementById('commit-date');
+  const time = document.getElementById('commit-time');
+  const author = document.getElementById('commit-author');
+  const lines = document.getElementById('commit-lines');
+
+  link.href = commit.url || '#';
+  link.textContent = commit.id;
+
+  date.textContent = commit.datetime?.toLocaleString('en', { dateStyle: 'full' }) ?? '';
+  time.textContent = commit.datetime?.toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' }) ?? '';
+  author.textContent = commit.author ?? '';
+  lines.textContent = String(commit.totalLines ?? '');
+}
+
+function updateTooltipVisibility(isVisible) {
+  const tooltip = document.getElementById('commit-tooltip');
+  tooltip.hidden = !isVisible;
+}
+
+function updateTooltipPosition(event) {
+  const tooltip = document.getElementById('commit-tooltip');
+  const pad = 12;
+  const { clientX, clientY } = event;
+  tooltip.style.left = `${clientX + pad}px`;
+  tooltip.style.top = `${clientY + pad}px`;
+}
+
+// -------- Step 2: scatterplot (time of day vs date) --------
 function renderScatterPlot(_data, commits) {
   const width = 1000;
   const height = 600;
@@ -92,7 +123,6 @@ function renderScatterPlot(_data, commits) {
     .attr('viewBox', `0 0 ${width} ${height}`)
     .style('overflow', 'visible');
 
-  // Scales
   const xScale = d3
     .scaleTime()
     .domain(d3.extent(commits, d => d.datetime))
@@ -101,7 +131,6 @@ function renderScatterPlot(_data, commits) {
 
   const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
-  // Margins and usable area
   const margin = { top: 10, right: 10, bottom: 30, left: 20 };
   const usableArea = {
     top: margin.top,
@@ -115,17 +144,12 @@ function renderScatterPlot(_data, commits) {
   xScale.range([usableArea.left, usableArea.right]);
   yScale.range([usableArea.bottom, usableArea.top]);
 
-  // Step 2.3: gridlines (draw BEFORE axes)
   const gridlines = svg
     .append('g')
     .attr('class', 'gridlines')
     .attr('transform', `translate(${usableArea.left},0)`);
+  gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
 
-  gridlines.call(
-    d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width)
-  );
-
-  // Axes
   const xAxis = d3.axisBottom(xScale);
   const yAxis = d3
     .axisLeft(yScale)
@@ -143,7 +167,6 @@ function renderScatterPlot(_data, commits) {
     .attr('class', 'y-axis')
     .call(yAxis);
 
-  // Dots
   const dots = svg.append('g').attr('class', 'dots');
 
   dots
@@ -152,12 +175,23 @@ function renderScatterPlot(_data, commits) {
     .join('circle')
     .attr('cx', d => xScale(d.datetime))
     .attr('cy', d => yScale(d.hourFrac))
-    .attr('r', 4)
+    .attr('r', 5)
     .attr('fill', 'steelblue')
-    .attr('opacity', 0.85);
+    .attr('opacity', 0.9)
+    .on('mouseenter', (event, commit) => {
+      renderTooltipContent(commit);
+      updateTooltipVisibility(true);
+      updateTooltipPosition(event);
+    })
+    .on('mousemove', (event) => {
+      updateTooltipPosition(event);
+    })
+    .on('mouseleave', () => {
+      updateTooltipVisibility(false);
+    });
 }
 
-// ---- run everything ----
+// -------- Run everything --------
 const data = await loadData();
 const commits = processCommits(data);
 renderCommitInfo(data, commits);
