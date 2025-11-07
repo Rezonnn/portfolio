@@ -772,3 +772,51 @@ dl.info[hidden]:not(:hover, :focus-within) {
   stroke-opacity: 0.9;
   shape-rendering: crispEdges;
 }
+
+/* ───────── Step 4 Enhancements ───────── */
+
+/* Make gridlines subtle */
+.gridlines line {
+  stroke: #ccc;
+  stroke-opacity: 0.3;
+}
+
+/* Smooth transitions and scaling for dots */
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+/* Tooltip styling (reused from Step 3) */
+dl.info {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.25rem 1rem;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info dt {
+  opacity: 0.6;
+}
+
+dl.info.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  z-index: 1000;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
