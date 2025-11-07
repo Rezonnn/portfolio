@@ -646,3 +646,40 @@ img { max-width: 100%; height: auto; display: block; }
 #clear-year:hover {
   background: color-mix(in oklch, var(--color-accent, #e91e63), canvas 85%);
 }
+
+/* === Lab 6 · Step 1: Stats block === */
+#stats .stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem 2rem;
+  align-items: start;
+  justify-items: center;
+  max-width: 900px;
+  margin: 1rem auto 2rem;
+  padding: .5rem 0;
+}
+
+#stats .stats dt {
+  grid-row: 1;
+  font-size: .9rem;
+  color: var(--muted, #6b7280);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+}
+
+#stats .stats dd {
+  grid-row: 2;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text, canvastext);
+  text-align: center;
+}
+
+@media (max-width: 900px) { #stats .stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px)  { 
+  #stats .stats { grid-template-columns: 1fr; }
+  #stats .stats dt, #stats .stats dd { justify-self: start; text-align: left; }
+}
