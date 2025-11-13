@@ -72,7 +72,7 @@
   {
     "title": "Data Structures Library",
     "year": 2022,
-    "image": "https://rezonnn.github.io/portfolio/images/project11.jpg",
+    "image": "https://rezonnn.github.io/portfolio/images/project11.png",
     "link": "https://github.com/Rezonnn/Data-Structures-Library",
     "description": "A modular C++ data structures collection featuring fully implemented and tested abstractions including linked lists, hash tables, trees, and graph structures."
   },
