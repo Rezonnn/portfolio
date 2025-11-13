@@ -8,28 +8,28 @@
   },
   {
     "title": "California Weather Forecast",
-    "year": 2024,
+    "year": 2025,
     "image": "https://rezonnn.github.io/portfolio/images/project2.jpg",
     "link": "https://github.com/Rezonnn/California-Weather",
     "description": "A sleek, interactive California weather dashboard that pulls real-time data from a live API and displays it with clean, modern visualizations."
   },
   {
     "title": "Cosmic Dodger Game",
-    "year": 2023,
+    "year": 2025,
     "image": "https://rezonnn.github.io/portfolio/images/project3.jpg",
     "link": "https://cosmicdodger.netlify.app/",
     "description": "A fast-paced browser arcade game where players dodge incoming asteroids and survive as long as possible."
   },
   {
     "title": "Crypto Price Tracker",
-    "year": 2022,
+    "year": 2024,
     "image": "https://rezonnn.github.io/portfolio/images/project4.jpg",
     "link": "https://github.com/Rezonnn/Crypto-Prices",
     "description": "A real-time cryptocurrency price tracker that pulls live market data and displays it through an interactive, user-friendly dashboard."
   },
   {
     "title": "Formula 1 Statistics and Data",
-    "year": 2025,
+    "year": 2024,
     "image": "https://rezonnn.github.io/portfolio/images/project5.png",
     "link": "https://github.com/Rezonnn/Formula1-Stats",
     "description": "A data-driven Formula 1 platform that integrates live race APIs, interactive charts, searchable profiles, and circuit analytics."
@@ -50,14 +50,14 @@
   },
   {
     "title": "Live Earthquake Dashboard",
-    "year": 2025,
+    "year": 2023,
     "image": "https://rezonnn.github.io/portfolio/images/project8.jpg",
     "link": "https://github.com/Rezonnn/Earthquake-Dashboard",
     "description": "A real-time earthquake monitoring dashboard that visualizes live seismic activity on an interactive map with detailed event data."
   },
   {
     "title": "Java Task Tracker",
-    "year": 2021,
+    "year": 2023,
     "image": "https://rezonnn.github.io/portfolio/images/project9.jpg",
     "link": "https://github.com/Rezonnn/Java-Task-Tracker",
     "description": "A Java-based task tracking application that lets users manage to-dos, deadlines, and priorities through a clean, console-driven interface."
@@ -71,14 +71,14 @@
   },
   {
     "title": "Data Structures Library",
-    "year": 2023,
+    "year": 2022,
     "image": "https://rezonnn.github.io/portfolio/images/project11.jpg",
     "link": "https://github.com/Rezonnn/Data-Structures-Library",
     "description": "A modular C++ data structures collection featuring fully implemented and tested abstractions including linked lists, hash tables, trees, and graph structures."
   },
   {
     "title": "MoodLog Mobile App",
-    "year": 2024,
+    "year": 2021,
     "image": "https://rezonnn.github.io/portfolio/images/project12.jpg",
     "link": "https://github.com/Rezonnn/Moodlog-Mobile-App",
     "description": "A clean and intuitive mobile app that helps users track daily moods, reflect on patterns, and build healthier emotional habits."

@@ -19,10 +19,10 @@ if (profileStats) {
 
 // --- LinkedIn stats (manual numbers since there is no public API) ---
 const linkedinData = {
-  connections: '3,807',
-  followers: '3,863',
+  connections: '3,850',
+  followers: '3,907',
   viewers: '182',
-  searches: '71'
+  searches: '101'
 };
 
 const linkedinStats = document.querySelector('#linkedin-stats');
