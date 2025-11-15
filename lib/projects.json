@@ -7,11 +7,11 @@
     "description": "A personal website built using HTML, CSS, and JavaScript modules to showcase my work and experiments."
   },
   {
-    "title": "California Weather Forecast",
+    "title": "Bikewatching",
     "year": 2025,
-    "image": "https://rezonnn.github.io/portfolio/images/project2.jpg",
-    "link": "https://github.com/Rezonnn/California-Weather",
-    "description": "A sleek, interactive California weather dashboard that pulls real-time data from a live API and displays it with clean, modern visualizations."
+    "image": "https://rezonnn.github.io/portfolio/images/project2.png",
+    "link": "https://rezonnn.github.io/bikewatching/",
+    "description": "An interactive visualization of the Boston area bike traffic patterns using Mapbox and D3.js. It features real-time filtering by time of day, traffic flow analysis, and bike share data."
   },
   {
     "title": "Cosmic Dodger Game",
@@ -70,11 +70,11 @@
     "description": "A smart Tic-Tac-Toe game featuring an AI opponent powered by the Minimax algorithm for optimal moves."
   },
   {
-    "title": "Data Structures Library",
+    "title": "California Weather Forecast",
     "year": 2022,
-    "image": "https://rezonnn.github.io/portfolio/images/project11.png",
-    "link": "https://github.com/Rezonnn/Data-Structures-Library",
-    "description": "A modular C++ data structures collection featuring fully implemented and tested abstractions including linked lists, hash tables, trees, and graph structures."
+    "image": "https://rezonnn.github.io/portfolio/images/project11.jpg",
+    "link": "https://github.com/Rezonnn/California-Weather",
+    "description": "A sleek, interactive California weather dashboard that pulls real-time data from a live API and displays it with clean, modern visualizations."
   },
   {
     "title": "MoodLog Mobile App",
