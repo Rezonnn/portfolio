@@ -1,80 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meta</title>
-  <link rel="stylesheet" href="../style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta</title>
+
+    <link rel="stylesheet" href="../style.css" />
+
+    <script src="../global.js" type="module"></script>
+    <script src="main.js" type="module"></script>
 </head>
+
 <body>
-  <h1>Meta</h1>
-  <p>This page includes stats about the code of this website.</p>
-  
-  <section id="time-filter">
-      <label for="commit-progress" class="time-filter-label">
-        Show commits until:
-        <input
-          id="commit-progress"
-          type="range"
-          min="0"
-          max="100"
-          step="1"
-          value="100"
-        />
-        <time id="commit-time"></time>
-      </label>
-    </section>
-  
-  <section id="stats-section">
-    <h2>Summary stats</h2>
+    <h1>Meta</h1>
+    <p>This page shows the statistics and analysis of my codebase.</p>
+    <div style="display: flex; align-items: baseline; margin: 2rem 0;">
+        <label style="flex: 1;">
+            Show commits until:
+            <input type="range" id="commit-progress" min="0" max="100" value="100" style="width: 100%;" />
+            <time id="slider-time-display"></time>
+        </label>
+    </div>
+
     <div id="stats"></div>
-  </section>
+    <div id="scrolly-1">
+        <div id="scatter-story">
+        </div>
+        <div id="scatter-plot">
+            <h2>Commits by Time of Day</h2>
+            <p id="selection-count">No commits selected</p>
+            <div id="chart"></div>
 
-  <section id="scrolly-1">
-    <!-- Left side: narrative text generated from commits -->
-    <div id="scatter-story">
-    <!-- Filled by JS: one .step per commit -->
+            <h3>Language Breakdown (Selected Commits)</h3>
+            <dl id="language-breakdown" class="stats"></dl>
+        </div>
     </div>
 
-    <!-- Right side: sticky scatter plot + brushing info -->
-    <div id="scatter-plot">
-      <h2>Commits by time of day</h2>
-      <div id="chart"></div>
-
-      <p id="selection-count">No commits selected</p>
-      <h3>Language breakdown of selection</h3>
-      <dl id="language-breakdown" class="stats"></dl>
+    <div id="scrolly-2">
+        <div id="files-panel">
+            <h2>The files in My Repository</h2>
+            <dl id="files"></dl>
+        </div>
+        <div id="files-story">
+        </div>
     </div>
-  </section>
 
-  <dl id="commit-tooltip" class="info tooltip" hidden>
-    <dt>Commit</dt>
-    <dd><a href="" id="commit-link" target="_blank" rel="noopener noreferrer"></a></dd>
+    <dl id="commit-tooltip" class="info tooltip" hidden>
+        <dt>Commit</dt>
+        <dd><a href="" id="commit-link" target="_blank"></a></dd>
 
-    <dt>Date</dt>
-    <dd id="commit-date"></dd>
+        <dt>Date</dt>
+        <dd id="commit-date"></dd>
 
-    <dt>Time</dt>
-    <dd id="commit-time"></dd>
+        <dt>Time</dt>
+        <dd id="commit-time"></dd>
 
-    <dt>Author</dt>
-    <dd id="commit-author"></dd>
+        <dt>Author</dt>
+        <dd id="commit-author"></dd>
 
-    <dt>Lines edited</dt>
-    <dd id="commit-lines"></dd>
-  </dl>
-  <section id="files-section">
-    <h2>Files over time</h2>
-    <p>
-      Each row shows one file; each dot represents a line of code that still
-      exists in the codebase at the selected time.
-    </p>
-    <dl id="files"></dl>
-  </section>
-
-  <script type="module" src="./main.js"></script>
-  <script src="../global.js" type="module"></script>
+        <dt>Lines edited</dt>
+        <dd id="commit-lines"></dd>
+    </dl>
 </body>
 </html>
